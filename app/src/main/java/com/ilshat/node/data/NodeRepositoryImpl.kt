@@ -23,11 +23,15 @@ class NodeRepositoryImpl @Inject constructor(
         localDataSource.deleteNode(node)
     }
 
-    override  fun getRootNodes(): Flow<List<Node>> {
+    override fun getRootNodes(): Flow<List<Node>> {
         return localDataSource.getNodes().toDbResult()
     }
 
-    override  fun getNodes(parentId: Long?): Flow<List<Node>> {
+    override suspend fun getRootNodes(parentId: Long?): Long? {
+        return localDataSource.getRootNodes(parentId)
+    }
+
+    override fun getNodes(parentId: Long?): Flow<List<Node>> {
         return localDataSource.getNodes(parentId).toDbResult()
     }
 }

@@ -126,10 +126,10 @@ fun NodeItem(node: Node, interaction: MutableInteractionSource) {
         }
         Button(
             onClick = {
-                if (node.parentId!=null)
-                interaction.tryEmit(NodeViewModel.NodeInteraction.OpenNodeById(node.parentId))
+                if (node.parentId != null)
+                    interaction.tryEmit(NodeViewModel.NodeInteraction.GetPreviewNodeList(node.parentId))
                 else
-                 Toast.makeText(context,"Нет Родителя",Toast.LENGTH_SHORT,).show()
+                    Toast.makeText(context, "Нет Родителя", Toast.LENGTH_SHORT).show()
             },
             modifier = Modifier
                 .fillMaxHeight()

@@ -17,8 +17,11 @@ interface NodeDao {
     suspend fun deleteNode(node: Node)
 
     @Query("SELECT * FROM nodes WHERE parentId IS NULL")
-    fun getRootNodes(): Flow<List<Node>>
+    fun getParentId(): Flow<List<Node>>
 
     @Query("SELECT * FROM nodes WHERE parentId = :parentId")
     fun getChildNodes(parentId: Long?): Flow<List<Node>>
+
+    @Query("SELECT parentId FROM nodes WHERE id = :id")
+    suspend fun getParentId(id: Long?): Long?
 }
